@@ -13,13 +13,15 @@ class Product {
     var id : Int?
     var title : String?
     var image1 : UIImage?
+    var image2 : UIImage?
+    var image3 : UIImage?
     var price : Double?
     var discountPrice : Double?
     var brand : String?
+    var category : String?
+    var description : String?
     
-    init(){
-        
-    }
+    init(){}
     
     init(id : Int, title : String, image : UIImage) {
         self.id = id
@@ -28,6 +30,6 @@ class Product {
     }
 
     func calculateDiscountPrice(percent : Double) -> Double {
-        return round((self.price! - self.price!*percent)/100)
+        return round((self.price! - (self.price!*percent)/100)*100)/100
     }
 }

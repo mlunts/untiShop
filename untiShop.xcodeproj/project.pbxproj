@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		6049E61EC75107455FDA5745 /* Pods_untiShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C0AF3BA1260E787B99DDD6 /* Pods_untiShop.framework */; };
 		9C9735AE21EA303900362F63 /* init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9735AD21EA303800362F63 /* init.swift */; };
+		9C9735B021EAB52500362F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C9735AF21EAB52500362F63 /* Assets.xcassets */; };
+		9C9735B221EB4FA600362F63 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9735B121EB4FA500362F63 /* Extensions.swift */; };
+		9C9735B521EC01AB00362F63 /* SingleProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9735B421EC01AB00362F63 /* SingleProductViewController.swift */; };
 		9CAAA56C21E9113000FEA150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAA56B21E9113000FEA150 /* AppDelegate.swift */; };
-		9CAAA56E21E9113000FEA150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAA56D21E9113000FEA150 /* ViewController.swift */; };
+		9CAAA56E21E9113000FEA150 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAA56D21E9113000FEA150 /* FeaturedViewController.swift */; };
 		9CAAA57121E9113000FEA150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CAAA56F21E9113000FEA150 /* Main.storyboard */; };
-		9CAAA57321E9113300FEA150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CAAA57221E9113300FEA150 /* Assets.xcassets */; };
 		9CAAA57621E9113300FEA150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CAAA57421E9113300FEA150 /* LaunchScreen.storyboard */; };
 		9CAAA57E21E9378300FEA150 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAA57D21E9378300FEA150 /* Product.swift */; };
 /* End PBXBuildFile section */
@@ -22,11 +24,13 @@
 		51C0AF3BA1260E787B99DDD6 /* Pods_untiShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_untiShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59188E94D90372DFE864BE56 /* Pods-untiShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-untiShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-untiShop/Pods-untiShop.release.xcconfig"; sourceTree = "<group>"; };
 		9C9735AD21EA303800362F63 /* init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = init.swift; sourceTree = "<group>"; };
+		9C9735AF21EAB52500362F63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C9735B121EB4FA500362F63 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9C9735B421EC01AB00362F63 /* SingleProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleProductViewController.swift; sourceTree = "<group>"; };
 		9CAAA56821E9113000FEA150 /* untiShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = untiShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAAA56B21E9113000FEA150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9CAAA56D21E9113000FEA150 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9CAAA56D21E9113000FEA150 /* FeaturedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		9CAAA57021E9113000FEA150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9CAAA57221E9113300FEA150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CAAA57521E9113300FEA150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CAAA57721E9113300FEA150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CAAA57D21E9378300FEA150 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -61,6 +65,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9C9735B321EC018600362F63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9C9735B421EC01AB00362F63 /* SingleProductViewController.swift */,
+				9CAAA56D21E9113000FEA150 /* FeaturedViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9C9735B621EC01B400362F63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9CAAA57D21E9378300FEA150 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9CAAA55F21E9113000FEA150 = {
 			isa = PBXGroup;
 			children = (
@@ -82,12 +103,13 @@
 		9CAAA56A21E9113000FEA150 /* untiShop */ = {
 			isa = PBXGroup;
 			children = (
+				9C9735AF21EAB52500362F63 /* Assets.xcassets */,
 				9CAAA56B21E9113000FEA150 /* AppDelegate.swift */,
 				9C9735AD21EA303800362F63 /* init.swift */,
-				9CAAA56D21E9113000FEA150 /* ViewController.swift */,
+				9C9735B121EB4FA500362F63 /* Extensions.swift */,
+				9C9735B621EC01B400362F63 /* Model */,
+				9C9735B321EC018600362F63 /* Controller */,
 				9CAAA56F21E9113000FEA150 /* Main.storyboard */,
-				9CAAA57D21E9378300FEA150 /* Product.swift */,
-				9CAAA57221E9113300FEA150 /* Assets.xcassets */,
 				9CAAA57421E9113300FEA150 /* LaunchScreen.storyboard */,
 				9CAAA57721E9113300FEA150 /* Info.plist */,
 			);
@@ -155,7 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CAAA57621E9113300FEA150 /* LaunchScreen.storyboard in Resources */,
-				9CAAA57321E9113300FEA150 /* Assets.xcassets in Resources */,
+				9C9735B021EAB52500362F63 /* Assets.xcassets in Resources */,
 				9CAAA57121E9113000FEA150 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,11 +193,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-untiShop/Pods-untiShop-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,9 +232,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CAAA56E21E9113000FEA150 /* ViewController.swift in Sources */,
+				9C9735B221EB4FA600362F63 /* Extensions.swift in Sources */,
+				9CAAA56E21E9113000FEA150 /* FeaturedViewController.swift in Sources */,
 				9C9735AE21EA303900362F63 /* init.swift in Sources */,
 				9CAAA56C21E9113000FEA150 /* AppDelegate.swift in Sources */,
+				9C9735B521EC01AB00362F63 /* SingleProductViewController.swift in Sources */,
 				9CAAA57E21E9378300FEA150 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
