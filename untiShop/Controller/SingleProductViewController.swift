@@ -13,7 +13,7 @@ class SingleProductViewController: UIViewController {
 
     @IBOutlet weak var imagesSlideshow: ImageSlideshow!
     @IBOutlet weak var productTitleLabel: UILabel!
-    @IBOutlet weak var productDescriptionTextView: UITextView!
+    @IBOutlet weak var productDescriptionLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     
     
@@ -32,7 +32,9 @@ class SingleProductViewController: UIViewController {
     func updateUI() {
         productTitleLabel.text = selectedProduct.title
         productPriceLabel.text = "$\(selectedProduct.price ?? 0)"
-        productDescriptionTextView.text = selectedProduct.description
+        productDescriptionLabel.text = selectedProduct.description
+        
+        productDescriptionLabel.sizeToFit()
         
         if (selectedProduct.image3 != nil){
             imagesSlideshow.setImageInputs([

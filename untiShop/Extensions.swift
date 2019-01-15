@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 func getImageFromURL(urlpath: String) -> UIImage {
     var image : UIImage
     let url = URL(string: urlpath)
@@ -18,3 +20,16 @@ func getImageFromURL(urlpath: String) -> UIImage {
     
     return image
 }
+
+func strikeOnLabel(price : Double, oldPriceLabel : UILabel){
+    let currencyFormatter = NumberFormatter()
+    currencyFormatter.numberStyle = .currency
+    currencyFormatter.currencyCode = "USD"
+    let priceInINR = currencyFormatter.string(from: price as NSNumber)
+    
+    let attributedString = NSMutableAttributedString(string: priceInINR!)
+    attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
+    oldPriceLabel.attributedText = attributedString
+}
+
+

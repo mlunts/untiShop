@@ -10,3 +10,4 @@ import Foundation
 
 let IMAGE_URL = "https://rmssugar.000webhostapp.com/img/"
 let FEATURED_URL = "https://rmssugar.000webhostapp.com/get_featured.php"
+let CATEGORIES_URL = "https://rmssugar.000webhostapp.com/getCategories.php"

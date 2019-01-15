@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class Product {
     var id : Int?
     var title : String?
@@ -32,4 +33,6 @@ class Product {
     func calculateDiscountPrice(percent : Double) -> Double {
         return round((self.price! - (self.price!*percent)/100)*100)/100
     }
+    
+   
 }

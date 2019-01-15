@@ -16,7 +16,7 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     
-    
+    var service = Service()
     var products = [Product]() {
         didSet {
             self.featuredCollectionView?.reloadData()
@@ -41,7 +41,8 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
         
         cell.productTitle.text = product.title
         cell.productBrandLabel.text = product.brand
-        cell.productPriceLabel.text = "$\(product.price ?? 0)"
+        strikeOnLabel(price: product.price ?? 0, oldPriceLabel: cell.productPriceLabel)
+        cell.productPriceLabel.sizeToFit()
         cell.productDiscountPriceLabel.text = "$\(product.discountPrice ?? 0)"
         cell.productImage.image = product.image1
         return cell
@@ -51,7 +52,7 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
     
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "SingleProductViewController") as! SingleProductViewController
-        print(products[indexPath.item].brand)
+        
         newViewController.selectedProduct = products[indexPath.item]
         newViewController.previousVC = "featured"
         self.present(newViewController, animated: true, completion: nil)
@@ -90,22 +91,8 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
                 
                 for i in 0...json.count-1 {
                     let product = Product()
-                    product.id = json[i]["id"].int
-                    product.title = json[i]["title"].string
-                    product.price = round(100*json[i]["price"].doubleValue)/100
-                    product.discountPrice = product.calculateDiscountPrice(percent: json[i]["discount_percent"].doubleValue)
-                    product.brand = json[i]["brand_name"].string
-                    product.description = json[i]["description"].stringValue
-                    
-                    product.image1 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-1"].string!)")
-                    if (json[i]["image-2"].string != nil) {
-                    product.image2 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-2"].string!)")
-                    }
-                    if (json[i]["image-3"].string != nil) {
-                    product.image3 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-3"].string!)")
-                    }
-                   self.products.append(product)
-                    
+                    self.service.fetchProduct(product: product, i: i, json: json)
+                    self.products.append(product)
                 }
             } else {print("oops")}
         }
