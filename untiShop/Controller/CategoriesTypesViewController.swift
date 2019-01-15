@@ -13,18 +13,15 @@ import SwiftyJSON
 class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var types = ["Одежда", "Обувь", "Аксессуары"]
-    var categories = [String]() {
-        didSet {
-            print(categories.count)
-            categoriesTableView.reloadData()
-        }
-    }
+    var previewImages = ["female_clothes", "female_shoes", "female_acc"]
+    
+    var categories = [String]()
+    var categoryPreviews = [UIImage]()
     var selectedType : Int?
     var selectedGender : String?
     
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var typesTableView: UITableView!
-    @IBOutlet weak var categoriesTableView: UITableView!
     
     
     
@@ -32,47 +29,38 @@ class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         typesTableView.delegate = self
         typesTableView.dataSource = self
-        categoriesTableView.isHidden = true
-        categoriesTableView.delegate = self
-        categoriesTableView.dataSource = self
         genderSegmentedControl.selectedSegmentIndex = 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == typesTableView {
             return self.types.count
-        } else {
-            return self.categories.count
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == typesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TypesTableViewCell", for: indexPath)
                 as! TypesTableViewCell
             
             cell.typeLabel.text = types[indexPath.row]
-            
+            cell.previewImage.image = UIImage(named: previewImages[indexPath.row])
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath)
-                as! CategoriesTableViewCell
-            
-            cell.categoryLabel.text = categories[indexPath.row]
-            
-            return cell
-        }
+      
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == typesTableView {
+            categories.removeAll()
+        categoryPreviews.removeAll()
+        selectedType = indexPath.row
             getCategories(gender: selectedGender ?? "f", type: indexPath.row)
-            typesTableView.isHidden = true
-            categoriesTableView.isHidden = false
-            print(categories.count)
-            
-        } else {
-            
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "goToCategories") {
+            let vc = segue.destination as! CategoriesViewController
+            vc.categories = categories
+            vc.categoryPreviews = categoryPreviews
+            vc.selectedType = types[selectedType ?? 0]
         }
     }
     
@@ -81,8 +69,14 @@ class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITa
         {
         case 0:
             selectedGender = "f"
+            previewImages.removeAll()
+            previewImages = ["female_clothes", "female_shoes", "female_acc"]
+            typesTableView.reloadData()
         case 1:
             selectedGender = "m"
+            previewImages.removeAll()
+            previewImages = ["male_clothes", "male_shoes", "male_acc"]
+            typesTableView.reloadData()
         default:
             break;
         }
@@ -97,12 +91,19 @@ class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITa
                 
                 for i in 0...json.count-1 {
                     if ((json[i]["gender"].string == "u" || json[i]["gender"].string == gender) && (json[i]["type"].intValue == type + 1)) {
-                       print(json[i]["category"].stringValue)
                         self.categories.append(json[i]["category"].stringValue)
+                        if gender == "f" {
+                            print("\(IMAGE_URL)\(json[i]["female_preview"].string!)")
+                            self.categoryPreviews.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["female_preview"].string!)"))
+                        } else {
+                            self.categoryPreviews.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["male_preview"].string!)"))
+                        }
                     }
                 }
+                self.performSegue(withIdentifier: "goToCategories", sender: nil)
             } else {print("oops")}
         }
+       
     }
 
     
@@ -114,6 +115,3 @@ class TypesTableViewCell: UITableViewCell{
     
 }
 
-class CategoriesTableViewCell: UITableViewCell {
-    @IBOutlet weak var categoryLabel: UILabel!
-}

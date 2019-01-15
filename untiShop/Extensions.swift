@@ -33,3 +33,6 @@ func strikeOnLabel(price : Double, oldPriceLabel : UILabel){
 }
 
 
+    
+    
+
