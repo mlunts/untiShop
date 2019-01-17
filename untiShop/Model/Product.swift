@@ -16,6 +16,7 @@ class Product {
     var image1 : UIImage?
     var image2 : UIImage?
     var image3 : UIImage?
+    var images = [UIImage]()
     var price : Double?
     var discountPrice : Double?
     var brand : String?
@@ -29,10 +30,10 @@ class Product {
         self.title = title
         self.image1 = image
     }
-
+    
     func calculateDiscountPrice(percent : Double) -> Double {
         return round((self.price! - (self.price!*percent)/100)*100)/100
     }
     
-   
+    
 }

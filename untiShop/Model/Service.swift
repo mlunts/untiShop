@@ -16,16 +16,18 @@ class Service {
         product.id = json[i]["id"].int
         product.title = json[i]["title"].string
         product.price = round(100*json[i]["price"].doubleValue)/100
-        product.discountPrice = product.calculateDiscountPrice(percent: json[i]["discount_percent"].doubleValue)
+        if ((json[i]["discount_percent"].string != nil) && (json[i]["discount_percent"].intValue != 0)) {
+            product.discountPrice = product.calculateDiscountPrice(percent: json[i]["discount_percent"].doubleValue)
+        }
         product.brand = json[i]["brand_name"].string
         product.description = json[i]["description"].stringValue
         
-        product.image1 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-1"].string!)")
+        product.images.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-1"].string!)"))
         if (json[i]["image-2"].string != nil) {
-            product.image2 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-2"].string!)")
+            product.images.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-2"].string!)"))
         }
         if (json[i]["image-3"].string != nil) {
-            product.image3 = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-3"].string!)")
+            product.images.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["image-3"].string!)"))
         }
     }
     

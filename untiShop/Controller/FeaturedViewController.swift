@@ -29,43 +29,9 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var featuredCollectionView: UICollectionView!
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(products.count)
-        return products.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as!        FeaturedItemViewCell
-        
-        let product = products[indexPath.item]
-        
-        cell.productTitle.text = product.title
-        cell.productBrandLabel.text = product.brand
-        strikeOnLabel(price: product.price ?? 0, oldPriceLabel: cell.productPriceLabel)
-        cell.productPriceLabel.sizeToFit()
-        cell.productDiscountPriceLabel.text = "$\(product.discountPrice ?? 0)"
-        cell.productImage.image = product.image1
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "SingleProductViewController") as! SingleProductViewController
-        
-        newViewController.selectedProduct = products[indexPath.item]
-        newViewController.previousVC = "featured"
-        self.present(newViewController, animated: true, completion: nil)
-        
-        
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(products.count)
-       
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = UIActivityIndicatorView.Style.gray
@@ -80,7 +46,36 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return products.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! FeaturedItemViewCell
+        
+        let product = products[indexPath.item]
+        
+        cell.productTitle.text = product.title
+        cell.productBrandLabel.text = product.brand
+        strikeOnLabel(price: product.price ?? 0, oldPriceLabel: cell.productPriceLabel)
+        cell.productPriceLabel.sizeToFit()
+        cell.productDiscountPriceLabel.text = "$\(product.discountPrice ?? 0)"
+        cell.productImage.image = product.images[0]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "SingleProductViewController") as! SingleProductViewController
+        
+        newViewController.selectedProduct = products[indexPath.item]
+        newViewController.previousVC = "featured"
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func getData() {
@@ -98,15 +93,7 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource, UICo
         }
     }
     
-   
+    
 }
 
-class FeaturedItemViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var productTitle: UILabel!
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var productBrandLabel: UILabel!
-    @IBOutlet weak var productPriceLabel: UILabel!
-    @IBOutlet weak var productDiscountPriceLabel: UILabel!
-    
-}
+

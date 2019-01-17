@@ -9,12 +9,11 @@
 import UIKit
 
 class CategoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    var categories = [String]()
-    var categoryPreviews = [UIImage]()
-    var selectedType : String! 
-    var viewController1: UIViewController?
-    var viewController2: UIViewController?
+    
+    var categories = [Category]()
+    
+    var selectedType : String!
+    var selectedCategory = Category()
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var typeLabel: UILabel!
@@ -26,8 +25,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         categoriesTableView.dataSource = self
         categoriesTableView.reloadData()
         typeLabel.text = selectedType
-       
-       
+        
+        
     }
     
     
@@ -38,15 +37,34 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath)
             as! CategoriesTableViewCell
-        
-        cell.categoryLabel.text = categories[indexPath.row]
-        cell.categoryPreview.image = categoryPreviews[indexPath.row]
+        let c = categories[indexPath.row]
+        cell.categoryLabel.text = c.title
+        cell.categoryPreview.image = c.preview
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCategory = categories[indexPath.row]
+        let newVC = self.storyboard?.instantiateViewController(withIdentifier: "ProductsByCategoryViewController") as! ProductsByCategoryViewController
+        self.definesPresentationContext = true
+        newVC.modalPresentationStyle = .overCurrentContext
+        newVC.selectedCategory = selectedCategory
+        self.present(newVC, animated: true, completion: nil)
+        
+        //         self.performSegue(withIdentifier: "goToProducts", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "goToProducts") {
+            let vc = segue.destination as! ProductsByCategoryViewController
+            
+            vc.selectedCategory = selectedCategory
+        }
+    }
+    
+    
     @IBAction func backButton(_ sender: Any) {
-         self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

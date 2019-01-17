@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6049E61EC75107455FDA5745 /* Pods_untiShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C0AF3BA1260E787B99DDD6 /* Pods_untiShop.framework */; };
+		9C106F3221F0C743003AABDB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C106F3121F0C742003AABDB /* Category.swift */; };
+		9C106F3621F0C78C003AABDB /* ItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C106F3521F0C78C003AABDB /* ItemViewCell.swift */; };
 		9C21E60C21ECE3320022604F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C21E60B21ECE3320022604F /* Service.swift */; };
 		9C21E60E21ED44460022604F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C21E60D21ED44450022604F /* Assets.xcassets */; };
 		9C21E61021ED5A020022604F /* CategoriesTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C21E60F21ED5A020022604F /* CategoriesTypesViewController.swift */; };
@@ -27,6 +29,8 @@
 		18C4F57D7F546DA8FE0FC5B9 /* Pods-untiShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-untiShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-untiShop/Pods-untiShop.debug.xcconfig"; sourceTree = "<group>"; };
 		51C0AF3BA1260E787B99DDD6 /* Pods_untiShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_untiShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59188E94D90372DFE864BE56 /* Pods-untiShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-untiShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-untiShop/Pods-untiShop.release.xcconfig"; sourceTree = "<group>"; };
+		9C106F3121F0C742003AABDB /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		9C106F3521F0C78C003AABDB /* ItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewCell.swift; sourceTree = "<group>"; };
 		9C21E60B21ECE3320022604F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		9C21E60D21ED44450022604F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C21E60F21ED5A020022604F /* CategoriesTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTypesViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				9CAAA57D21E9378300FEA150 /* Product.swift */,
+				9C106F3121F0C742003AABDB /* Category.swift */,
 				9C21E60B21ECE3320022604F /* Service.swift */,
 			);
 			path = Model;
@@ -122,6 +127,7 @@
 				9C9735B621EC01B400362F63 /* Model */,
 				9C9735B321EC018600362F63 /* Controller */,
 				9CAAA56F21E9113000FEA150 /* Main.storyboard */,
+				9C106F3521F0C78C003AABDB /* ItemViewCell.swift */,
 				9CAAA57421E9113300FEA150 /* LaunchScreen.storyboard */,
 				9CAAA57721E9113300FEA150 /* Info.plist */,
 			);
@@ -207,14 +213,12 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/TTSegmentedControl/TTSegmentedControl.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTSegmentedControl.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -249,6 +253,7 @@
 				9C21E61021ED5A020022604F /* CategoriesTypesViewController.swift in Sources */,
 				9C21E61421EE6F680022604F /* ProductsByCategoryViewController.swift in Sources */,
 				9C9735B221EB4FA600362F63 /* Extensions.swift in Sources */,
+				9C106F3621F0C78C003AABDB /* ItemViewCell.swift in Sources */,
 				9C21E61221EE300E0022604F /* CategoriesViewController.swift in Sources */,
 				9C21E60C21ECE3320022604F /* Service.swift in Sources */,
 				9CAAA56E21E9113000FEA150 /* FeaturedViewController.swift in Sources */,
@@ -256,6 +261,7 @@
 				9CAAA56C21E9113000FEA150 /* AppDelegate.swift in Sources */,
 				9C9735B521EC01AB00362F63 /* SingleProductViewController.swift in Sources */,
 				9CAAA57E21E9378300FEA150 /* Product.swift in Sources */,
+				9C106F3221F0C743003AABDB /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

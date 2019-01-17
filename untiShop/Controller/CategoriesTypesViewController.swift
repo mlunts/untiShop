@@ -12,18 +12,16 @@ import SwiftyJSON
 
 class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var categories = [Category]()
+    
     var types = ["Одежда", "Обувь", "Аксессуары"]
     var previewImages = ["female_clothes", "female_shoes", "female_acc"]
     
-    var categories = [String]()
-    var categoryPreviews = [UIImage]()
     var selectedType : Int?
     var selectedGender : String?
     
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var typesTableView: UITableView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,34 +31,32 @@ class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.types.count
+        return self.types.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TypesTableViewCell", for: indexPath)
-                as! TypesTableViewCell
-            
-            cell.typeLabel.text = types[indexPath.row]
-            cell.previewImage.image = UIImage(named: previewImages[indexPath.row])
-            return cell
-      
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            categories.removeAll()
-        categoryPreviews.removeAll()
-        selectedType = indexPath.row
-            getCategories(gender: selectedGender ?? "f", type: indexPath.row)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TypesTableViewCell", for: indexPath)
+            as! TypesTableViewCell
         
+        cell.typeLabel.text = types[indexPath.row]
+        cell.previewImage.image = UIImage(named: previewImages[indexPath.row])
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        categories.removeAll()
+        selectedType = indexPath.row
+        getCategories(gender: selectedGender ?? "f", type: indexPath.row)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "goToCategories") {
             let vc = segue.destination as! CategoriesViewController
-            vc.categories = categories
-            vc.categoryPreviews = categoryPreviews
+            
             vc.selectedType = types[selectedType ?? 0]
+            vc.categories = categories
         }
     }
     
@@ -91,21 +87,24 @@ class CategoriesTypesViewController: UIViewController, UITableViewDelegate, UITa
                 
                 for i in 0...json.count-1 {
                     if ((json[i]["gender"].string == "u" || json[i]["gender"].string == gender) && (json[i]["type"].intValue == type + 1)) {
-                        self.categories.append(json[i]["category"].stringValue)
+                        let current = Category()
+                        current.title = json[i]["category"].stringValue
+                        current.id = json[i]["id"].intValue
+                        current.gender = gender
                         if gender == "f" {
-                            print("\(IMAGE_URL)\(json[i]["female_preview"].string!)")
-                            self.categoryPreviews.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["female_preview"].string!)"))
+                            current.preview = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["female_preview"].string!)")
                         } else {
-                            self.categoryPreviews.append(getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["male_preview"].string!)"))
+                            current.preview = getImageFromURL(urlpath: "\(IMAGE_URL)\(json[i]["male_preview"].string!)")
                         }
+                        self.categories.append(current)
                     }
                 }
                 self.performSegue(withIdentifier: "goToCategories", sender: nil)
             } else {print("oops")}
         }
-       
+        
     }
-
+    
     
 }
 
